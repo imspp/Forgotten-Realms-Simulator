@@ -4,11 +4,13 @@ import random
 
 
 class 居民(object):
-    def __init__(self, 种族=None, 性别=None, 姓名=None, 阵营=None, 力量=None, 敏捷=None, 体质=None, 智力=None, 感知=None, 魅力=None,
+    def __init__(self, 编号=None, 种族=None, 性别=None, 姓名=None, 阵营=None, 力量=None, 敏捷=None, 体质=None, 智力=None, 感知=None,
+                 魅力=None,
                  运动=None, 特技=None, 手法=None, 隐匿=None, 奥秘=None, 历史=None, 自然=None, 宗教=None, 调查=None, 驯养=None, 洞悉=None,
                  医学=None, 观察=None, 生存=None,
                  欺诈=None, 威吓=None, 表演=None, 说服=None, 生活方式=None, 职业=None
                  ):
+        self.编号 = 编号
         self.职业 = 职业
         self.说服 = 说服
         self.表演 = 表演
@@ -57,13 +59,15 @@ def 姓名生成器(种族, 性别):
         姓名 = random.choice(伊陆斯坎人类姓) + '.' + random.choice(伊陆斯坎人类女名)
         return 姓名
     print('未知种族')
-性别统计表={'男':0,'女':0}
-for x in range(2000000):
-    a=random.choice(['男','女'])
+
+
+性别统计表 = {'男': 0, '女': 0}
+for x in range(80000):
+    a = random.choice(['男', '女'])
     if a == '男':
-        性别统计表['男']=性别统计表['男']+1
+        性别统计表['男'] = 性别统计表['男'] + 1
     else:
-        性别统计表['女']=性别统计表['女']+1
+        性别统计表['女'] = 性别统计表['女'] + 1
 
 print(性别统计表)
 # a1 = 居民(姓名=姓名生成器(种族='人类', 性别='男'), 性别='男')
