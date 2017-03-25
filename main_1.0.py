@@ -2,6 +2,8 @@
 # encoding:utf8
 import random
 
+import sqlite3
+
 
 class 居民(object):
     def __init__(self, 编号=None, 种族=None, 性别=None, 姓名=None, 阵营=None, 力量=None, 敏捷=None, 体质=None, 智力=None, 感知=None,
@@ -53,19 +55,20 @@ class 居民(object):
 
 def 姓名生成器(性别):
     if 性别 == '男':
-        姓名 = random.choice(伊陆斯坎人类姓) + '.' + random.choice(伊陆斯坎人类男名)
+        姓名 = random.choice(伊陆斯坎人类男名) + '.' + random.choice(伊陆斯坎人类姓)
         return 姓名
-    姓名 = random.choice(伊陆斯坎人类姓) + '.' + random.choice(伊陆斯坎人类女名)
+    姓名 = random.choice(伊陆斯坎人类女名) + '.' + random.choice(伊陆斯坎人类姓)
     return 姓名
 
 
 
-姓名统计表 = {}
+姓名统计表 = []
 for x in range(10000):
     a = random.choice(['男', '女'])
-    姓名统计表={姓名生成器(a),a}
+    姓名统计表.append([姓名生成器(a),a])
 
-print(姓名统计表)
+for x in 姓名统计表:
+    print(x)
 # a1 = 居民(姓名=姓名生成器(种族='人类', 性别='男'), 性别='男')
 # a2 = 居民(姓名=姓名生成器(种族='人类', 性别='女'), 性别='女')
 
