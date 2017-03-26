@@ -156,38 +156,7 @@ def 属性生成器2(STR=1,DEX=1,CON=1,INT=1,WIS=1,CHA=1):
             Roll_result.append(random.randrange(1, 6))
             Roll_number = Roll_number + 1
         Roll_list[x] = sum(heapq.nlargest(3, Roll_result))
-
-    Roll_number=1
-    Roll_result=[]
-    while Roll_number <4:
-        Roll_result.append(random.randrange(1,6))
-        Roll_number=Roll_number+1
-    DEX=sum(heapq.nlargest(3,Roll_result))
-    Roll_number=1
-    Roll_result=[]
-    while Roll_number <4:
-        Roll_result.append(random.randrange(1,6))
-        Roll_number=Roll_number+1
-    CON=sum(heapq.nlargest(3,Roll_result))
-    Roll_number=1
-    Roll_result=[]
-    while Roll_number <4:
-        Roll_result.append(random.randrange(1,6))
-        Roll_number=Roll_number+1
-    INT=sum(heapq.nlargest(3,Roll_result))
-    Roll_number=1
-    Roll_result=[]
-    while Roll_number <4:
-        Roll_result.append(random.randrange(1,6))
-        Roll_number=Roll_number+1
-    WIS=sum(heapq.nlargest(3,Roll_result))
-    Roll_number=1
-    Roll_result=[]
-    while Roll_number <4:
-        Roll_result.append(random.randrange(1,6))
-        Roll_number=Roll_number+1
-    CHA=sum(heapq.nlargest(3,Roll_result))
-    return STR, DEX, CON, INT, WIS, CHA
+    return Roll_list
 
 
 def 姓名生成器(性别):
