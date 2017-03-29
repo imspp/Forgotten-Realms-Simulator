@@ -109,45 +109,6 @@ def 职业生成器(职业):
     return random.choice(职业)
 
 def 属性生成器(STR=1,DEX=1,CON=1,INT=1,WIS=1,CHA=1):
-    Roll_number=1
-    Roll_result=[]
-    while Roll_number <4:
-        Roll_result.append(random.randrange(1,6))
-        Roll_number=Roll_number+1
-    STR=sum(heapq.nlargest(3,Roll_result))
-    Roll_number=1
-    Roll_result=[]
-    while Roll_number <4:
-        Roll_result.append(random.randrange(1,6))
-        Roll_number=Roll_number+1
-    DEX=sum(heapq.nlargest(3,Roll_result))
-    Roll_number=1
-    Roll_result=[]
-    while Roll_number <4:
-        Roll_result.append(random.randrange(1,6))
-        Roll_number=Roll_number+1
-    CON=sum(heapq.nlargest(3,Roll_result))
-    Roll_number=1
-    Roll_result=[]
-    while Roll_number <4:
-        Roll_result.append(random.randrange(1,6))
-        Roll_number=Roll_number+1
-    INT=sum(heapq.nlargest(3,Roll_result))
-    Roll_number=1
-    Roll_result=[]
-    while Roll_number <4:
-        Roll_result.append(random.randrange(1,6))
-        Roll_number=Roll_number+1
-    WIS=sum(heapq.nlargest(3,Roll_result))
-    Roll_number=1
-    Roll_result=[]
-    while Roll_number <4:
-        Roll_result.append(random.randrange(1,6))
-        Roll_number=Roll_number+1
-    CHA=sum(heapq.nlargest(3,Roll_result))
-    return STR, DEX, CON, INT, WIS, CHA
-
-def 属性生成器2(STR=1,DEX=1,CON=1,INT=1,WIS=1,CHA=1):
     Roll_list={'STR':0, 'DEX':0, 'CON':0, 'INT':0, 'WIS':0, 'CHA':0}
     for x in Roll_list:
         Roll_number = 1
@@ -163,7 +124,7 @@ def 姓名生成器(性别):
     if 性别 == '男':
         姓名 = random.choice(伊陆斯坎人类男名) + '.' + random.choice(伊陆斯坎人类姓)
         return 姓名
-    性别 = random.choice(伊陆斯坎人类女名) + '.' + random.choice(伊陆斯坎人类姓)
+    姓名 = random.choice(伊陆斯坎人类女名) + '.' + random.choice(伊陆斯坎人类姓)
     return 姓名
 姓名统计表 = []
 for x in range(10000):
