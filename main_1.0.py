@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # encoding:utf8
+import math
 import random
 import heapq
 import sqlalchemy
@@ -15,40 +16,39 @@ from sqlalchemy.orm import sessionmaker
 Base = declarative_base()
 
 
-class 居民(Base):
-    __tabname__ = '居民'
-
-    id = Column(Integer, primary_key=True)
-    阵营 = Column(String)
-    姓名 = Column(String)
-    性别 = Column(String)
-    种族 = Column(String)
-    职业 = Column(String)
-    魅力 = Column(Integer)
-    感知 = Column(Integer)
-    智力 = Column(Integer)
-    体质 = Column(Integer)
-    敏捷 = Column(Integer)
-    力量 = Column(Integer)
-    说服 = Column(Integer)
-    表演 = Column(Integer)
-    威吓 = Column(Integer)
-    欺诈 = Column(Integer)
-    生存 = Column(Integer)
-    观察 = Column(Integer)
-    医学 = Column(Integer)
-    洞悉 = Column(Integer)
-    驯养 = Column(Integer)
-    调查 = Column(Integer)
-    宗教 = Column(Integer)
-    自然 = Column(Integer)
-    历史 = Column(Integer)
-    奥秘 = Column(Integer)
-    隐匿 = Column(Integer)
-    手法 = Column(Integer)
-    特技 = Column(Integer)
-    运动 = Column(Integer)
-    生活方式 = Column(String)
+# class 居民(Base):
+#     __tabname__ = '居民'
+#     id = Column(Integer, primary_key=True)
+#     阵营 = Column(String)
+#     姓名 = Column(String)
+#     性别 = Column(String)
+#     种族 = Column(String)
+#     职业 = Column(String)
+#     魅力 = Column(Integer)
+#     感知 = Column(Integer)
+#     智力 = Column(Integer)
+#     体质 = Column(Integer)
+#     敏捷 = Column(Integer)
+#     力量 = Column(Integer)
+#     说服 = Column(Integer)
+#     表演 = Column(Integer)
+#     威吓 = Column(Integer)
+#     欺诈 = Column(Integer)
+#     生存 = Column(Integer)
+#     观察 = Column(Integer)
+#     医学 = Column(Integer)
+#     洞悉 = Column(Integer)
+#     驯养 = Column(Integer)
+#     调查 = Column(Integer)
+#     宗教 = Column(Integer)
+#     自然 = Column(Integer)
+#     历史 = Column(Integer)
+#     奥秘 = Column(Integer)
+#     隐匿 = Column(Integer)
+#     手法 = Column(Integer)
+#     特技 = Column(Integer)
+#     运动 = Column(Integer)
+#     生活方式 = Column(String)
 
 
 class 居民(object):
@@ -90,13 +90,15 @@ class 居民(object):
         self.种族 = 种族
         self.力量 = 力量
 
-种族列表=['矮人','精灵','半身人','人类','龙裔','侏儒','半精灵','半兽人','提夫林']
+
+种族列表 = ['矮人', '精灵', '半身人', '人类', '龙裔', '侏儒', '半精灵', '半兽人', '提夫林']
 伊陆斯坎人类姓 = ['布莱特伍德', '赫尔德', '霍尔雷文', '拉克曼', '斯托维恩', '文德瑞瓦']
 伊陆斯坎人类男名 = ['安德', '布拉特', '布兰', '夫拉夫', '盖斯', '兰德', '鲁特', '马尔瑟',
             '斯托尔',
             '塔曼', '厄斯']
 伊陆斯坎人类女名 = ['阿玛芙丽', '贝塔', '瑟菲莉', '凯芙拉', '玛拉', '奥尔加', '斯莉芙里',
             '维丝特拉']
+
 
 def 种族生成器(种族):
     return random.choice(种族)
@@ -105,19 +107,30 @@ def 种族生成器(种族):
 def 性别生成器(性别):
     return random.choice(性别)
 
+
 def 职业生成器(职业):
     return random.choice(职业)
 
-def 属性生成器(STR=1,DEX=1,CON=1,INT=1,WIS=1,CHA=1):
-    Roll_list={'STR':0, 'DEX':0, 'CON':0, 'INT':0, 'WIS':0, 'CHA':0}
+
+def 属性生成器(STR=1, DEX=1, CON=1, INT=1, WIS=1, CHA=1):
+    Roll_list = {'STR': 0, 'DEX': 0, 'CON': 0, 'INT': 0, 'WIS': 0, 'CHA': 0}
     for x in Roll_list:
         Roll_number = 1
         Roll_result = []
-        while Roll_number < 4:
+        while Roll_number <= 4:
             Roll_result.append(random.randrange(1, 6))
             Roll_number = Roll_number + 1
         Roll_list[x] = sum(heapq.nlargest(3, Roll_result))
     return Roll_list
+
+
+def 属性加值计算器(STR, DEX, CON, INT, WIS, CHA):
+    Ability_Scores = dict(STR=int(STR), DEX=int(DEX), CON=int(CON), INT=int(INT), WIS=int(WIS), CHA=int(CHA))
+    Ability_Scores_Modifiers = {'STR': 0, 'DEX': 0, 'CON': 0, 'INT': 0, 'WIS': 0, 'CHA': 0}
+    for x in Ability_Scores:
+        Ability_Scores_Modifiers[x] = math.floor(Ability_Scores[x] / 2 - 5)  # floor函数向下取整
+
+    return Ability_Scores_Modifiers
 
 
 def 姓名生成器(性别):
@@ -126,6 +139,8 @@ def 姓名生成器(性别):
         return 姓名
     姓名 = random.choice(伊陆斯坎人类女名) + '.' + random.choice(伊陆斯坎人类姓)
     return 姓名
+
+
 姓名统计表 = []
 for x in range(10000):
     a = random.choice(['男', '女'])
