@@ -132,6 +132,11 @@ def 属性加值计算器(STR, DEX, CON, INT, WIS, CHA):
 
     return Ability_Scores_Modifiers
 
+def 种族属性加值计算器(种族):
+    case 0:
+
+
+
 
 def 姓名生成器(性别):
     if 性别 == '男':
